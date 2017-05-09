@@ -1,5 +1,7 @@
 import shlex
 import traceback
+import gc
+import time
 
 import click
 import click.testing
@@ -31,3 +33,6 @@ def qiime_kludge(commands):
 
         assert result.exit_code == 0, 'command on line ' + str(j) + \
             ' exited with code ' + str(result.exit_code)
+    
+    gc.collect()
+    time.sleep(10)
